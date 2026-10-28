@@ -1,0 +1,10 @@
+{
+  "name": "مدرسة كوثر الأهلية",
+  "short_name": "كوثر",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f8f8",
+  "theme_color": "#075e63",
+  "lang": "ar",
+  "dir": "rtl"
+}
