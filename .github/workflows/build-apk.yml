@@ -29,8 +29,15 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+     - name: Setup Android SDK
+  uses: android-actions/setup-android@v3
+  
+      - name: Update Android SDK tools
+  run: |
+  
+    sdkmanager --version
+    sdkmanager --update
+    yes | sdkmanager --licenses
 
       - name: Install dependencies
         run: npm install
