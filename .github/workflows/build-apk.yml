@@ -29,15 +29,13 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-     - name: Setup Android SDK
-  uses: android-actions/setup-android@v3
-  
-      - name: Update Android SDK tools
-  run: |
-  
-    sdkmanager --version
-    sdkmanager --update
-    yes | sdkmanager --licenses
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          yes | sdkmanager --licenses
 
       - name: Install dependencies
         run: npm install
@@ -62,3 +60,4 @@ jobs:
         with:
           name: kauthar-school-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
