@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#075e63">
+  <meta name="description" content="تطبيق إدارة مدرسة كوثر الأهلية">
+  <title>مدرسة كوثر الأهلية</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">ك</div>
+      <div class="brand"><strong>مدرسة كوثر الأهلية</strong><small>تعليم • بناء • مستقبل</small></div>
+      <button id="syncButton" class="icon-btn" title="مزامنة البيانات" aria-label="مزامنة">⟳</button>
+    </header>
+    <section id="loginScreen" class="login-wrap">
+      <div class="login-card">
+        <div class="book-icon">▤</div>
+        <h1>مرحبًا بك</h1>
+        <p>سجّل الدخول إلى بوابة المدرسة</p>
+        <form id="loginForm">
+          <label for="phone">رقم الهاتف</label>
+          <input id="phone" name="phone" inputmode="tel" autocomplete="username" placeholder="أدخل رقم الهاتف" required>
+          <label for="password">كلمة المرور</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" required>
+          <button class="primary-btn" type="submit">تسجيل الدخول</button>
+        </form>
+        <p class="muted tiny">واجهة تجريبية. اربط Supabase وأنشئ حسابات حقيقية قبل الاستخدام المدرسي.</p>
+        <button id="demoButton" class="text-btn">الدخول للمعاينة دون حساب</button>
+      </div>
+    </section>
+    <main id="dashboard" class="hidden">
+      <section class="welcome-row">
+        <div><span class="muted">أهلًا بك في</span><h1 id="greeting">إدارة المدرسة</h1><p id="connectionStatus" class="status">● يعمل محليًا</p></div>
+        <div class="avatar">👤</div>
+      </section>
+      <section class="stats-grid">
+        <article class="stat-card blue"><span>إجمالي الطلاب</span><strong id="studentCount">0</strong><small>في قاعدة البيانات المحلية</small></article>
+        <article class="stat-card green"><span>الحضور اليوم</span><strong id="attendanceCount">0</strong><small>سجل حضور اليوم</small></article>
+        <article class="stat-card pink"><span>متوسط الدرجات</span><strong id="averageGrade">—</strong><small>من الدرجات المسجلة</small></article>
+        <article class="stat-card purple"><span>الإعلانات</span><strong id="announcementCount">0</strong><small>إعلانات المدرسة</small></article>
+      </section>
+      <nav class="action-grid" aria-label="أقسام التطبيق">
+        <button data-view="students">👥<span>الطلاب</span></button>
+        <button data-view="grades">📝<span>الدرجات</span></button>
+        <button data-view="attendance">☑️<span>الحضور</span></button>
+        <button data-view="announcements">📢<span>الإعلانات</span></button>
+      </nav>
+      <section class="content-card">
+        <div class="section-head"><h2 id="viewTitle">نظرة عامة</h2><span class="pill" id="syncLabel">مزامنة معلّقة: 0</span></div>
+        <div id="viewContent"></div>
+      </section>
+      <footer class="bottom-nav">
+        <button class="active" data-view="home">⌂<span>الرئيسية</span></button>
+        <button data-view="students">♙<span>الطلاب</span></button>
+        <button data-view="grades">▤<span>الدرجات</span></button>
+        <button data-view="more">☰<span>المزيد</span></button>
+      </footer>
+    </main>
+    <div id="toast" role="status" class="toast hidden"></div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
