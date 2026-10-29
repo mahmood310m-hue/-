@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Java 17
@@ -17,39 +17,34 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Node.js
+      - name: Setup Node 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci || npm install
 
-      - name: Build web
-        run: npm run build || echo "skip web build"
+      - name: Build web app
+        run: npm run build --if-present
 
-      - name: Capacitor sync
-        run: npx cap sync android || echo "skip cap sync"
+      - name: Sync Capacitor
+        run: npx cap sync android --if-present
 
-      - name: Accept Android Licenses
-        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+      - name: Accept licenses automatically
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
 
       - name: Make gradlew executable
-        run: |
-          chmod +x android/gradlew || true
-          chmod +x gradlew || true
+        run: chmod +x android/gradlew
 
-      - name: Build APK
-        run: |
-          cd android && ./gradlew assembleDebug --no-daemon --stacktrace
-        # لو مشروعك ما بيه مجلد android، استخدم السطر التالي بدلا من اللي فوقه:
-        # ./gradlew assembleDebug --no-daemon --stacktrace
+      - name: Build Debug APK
+        working-directory: ./android
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Kauthar-School-APK
-          path: |
-            android/app/build/outputs/apk/debug/*.apk
-            **/app/build/outputs/apk/debug/*.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
