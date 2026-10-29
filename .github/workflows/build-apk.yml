@@ -19,8 +19,13 @@ jobs:
         run: npm install
       - name: Build web
         run: npm run build
+      - name: Add Android platform if missing
+        run: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          fi
       - name: Capacitor sync
-        run: npx cap sync android || true
+        run: npx cap sync android
       - name: Accept Android licenses
         run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
       - name: Make gradlew executable
