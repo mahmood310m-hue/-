@@ -18,9 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build web
-        run: npm run build --if-present
+        run: npm run build
       - name: Capacitor sync
-        run: npx cap sync android --if-present
+        run: npx cap sync android || true
       - name: Accept Android licenses
         run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
       - name: Make gradlew executable
