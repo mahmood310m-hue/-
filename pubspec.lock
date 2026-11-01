@@ -211,3 +211,10 @@ packages:
 sdks:
   dart: ">=3.13.7 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
+dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  image_path: "assets/app_icon.png"
+  android: true
+  ios: true
