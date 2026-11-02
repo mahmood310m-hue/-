@@ -434,7 +434,7 @@ class SettingsPage extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const HonorStudentsScreen()),
+            MaterialPageRoute(builder: (context) =>  HonorStudentsScreen()),
           );
         },
       ),
