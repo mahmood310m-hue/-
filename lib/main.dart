@@ -427,11 +427,21 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('الإعدادات'), backgroundColor: const Color(0xFF1E40AF), foregroundColor: Colors.white),
       body: ListView(
-        children: const [
-          ListTile(leading: Icon(Icons.notifications), title: Text('تفعيل الإشعارات')),
-          ListTile(leading: Icon(Icons.dark_mode), title: Text('الوضع الداكن')),
-          ListTile(leading: Icon(Icons.lock), title: Text('تغيير كلمة المرور')),
-        ],
+        children: [
+      ListTile(
+        leading: const Icon(Icons.star),
+        title: const Text('الطلاب المتفوقون'),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HonorStudentsScreen()),
+          );
+        },
+      ),
+      ListTile(leading: Icon(Icons.notifications), title: Text('تفعيل الإشعارات')),
+      ListTile(leading: Icon(Icons.dark_mode), title: Text('الوضع الداكن')),
+      ListTile(leading: Icon(Icons.lock), title: Text('تغيير كلمة المرور')),
+    ],
       ),
     );
   }
