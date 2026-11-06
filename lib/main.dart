@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'path_to_file/honor_students_screen.dart'; // استبدل المسار بمكان الملف الصحيح
 void main() {
   runApp(const KawtarSchoolApp());
 }
@@ -434,14 +434,22 @@ class SettingsPage extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) =>  HonorStudentsScreen()),
-          );
-        },
+            // قم بلصق هذا الكود في نهاية ملف main.dart تماماً
+class HonorStudentsScreen extends StatelessWidget {
+  const HonorStudentsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('الطلاب المتفوقون'),
+        backgroundColor: Colors.blue,
       ),
-      ListTile(leading: Icon(Icons.notifications), title: Text('تفعيل الإشعارات')),
-      ListTile(leading: Icon(Icons.dark_mode), title: Text('الوضع الداكن')),
-      ListTile(leading: Icon(Icons.lock), title: Text('تغيير كلمة المرور')),
-    ],
+      body: const Center(
+        child: Text(
+          'مرحباً بك في شاشة الطلاب المتفوقين',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
