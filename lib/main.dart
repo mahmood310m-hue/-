@@ -433,10 +433,9 @@ class SettingsPage extends StatelessWidget {
         title: const Text('الطلاب المتفوقون'),
         onTap: () {
           Navigator.push(
-            context,
-            // قم بلصق هذا الكود في نهاية ملف main.dart تماماً
+            context,          
 class HonorStudentsScreen extends StatelessWidget {
-  const HonorStudentsScreen({Key? key}) : super(key: key);
+  const HonorStudentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
